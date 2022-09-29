@@ -1,13 +1,12 @@
-
 var questions = [
     {
-        question: "Which vaccine manufacturer received approval to conduct Phase-III clinical trials of an intranasal booster dose?",
-        answer: "Bharat Biotech",
+        question: "What is the duration of a Test Match?",
+        answer: "5 days",
         options: [
-            "Serum Institute",
-            "Bharat Biotech",
-            "Dr Reddy’s Laboratories",
-            "Zydus Cadila"
+            "3 days",
+            "5 days",
+            "1 day",
+            "4 days"
         ]
     },
     {
@@ -21,33 +20,33 @@ var questions = [
         ]
     },
     {
-        question: "what is national flower of india?",
-        answer: "Lotus",
+        question: "What is the approximate maximum weight of Golf Ball as per Rules of Golf?",
+        answer: "45gms",
         options: [
-            "Lotus",
-            "Rose",
-            "Sun-flower",
-            "Lilly"
+            "20gms",
+            "40gms",
+            "35gms",
+            "45gms"
         ]
     },
     {
-        question: "Gautma Buddha’s mother ‘Mahamaya’ belongs to which tribe?",
-        answer: "Koliya",
+        question: "Who among the following is the first Indian to score a century in Indian Premier League (IPL)?",
+        answer: "Manish Pandey",
         options: [
-            "Pala",
-            "Gupta",
-            "Kushan",
-            "Koliya"
+            "Manish Pandey",
+            "Dhoni",
+            "Rahul Dravid",
+            "Sachin"
         ]
     },
     {
-        question: "Which country launched its manned mission to its Tiangong Space station?",
-        answer: "China",
+        question: "Between which two teams did FIFA organise a Match of the Century in 2004?",
+        answer: "France and Brazil",
         options: [
-            "Japan",
-            "Israel",
-            "China",
-            " South Korea"
+            "France and Brazil",
+            "Germany and France",
+            "Italy and Brazil",
+            "Brazil and Germany"
         ]
     },
 ]
@@ -55,13 +54,13 @@ questions_temp =
 {
     question: "",
     answer: "",
-    options: []//this sould be an array
+    options: []
 }
 
 var quizHeader = document.getElementById("quizHeader")
 var quizBody = document.getElementById("quizBody")
 var qNum = 0
-var answers = []//array to show the correct answers and false ones
+var answers = []
 var minutes = 0
 var seconds = 0
 var formattedMinutes = 0
@@ -127,7 +126,7 @@ function nxtQuestion() {
     else alert("please select an option")
 }
 function appendResult() {
-    var correctQuestions = 0 // number of questions that were answered correctly
+    var correctQuestions = 0 
     document.getElementById("exitBtn").style.display = "none"
     clearInterval(interval)
     quizHeader.innerHTML = "<h3>Result</h3>"
@@ -187,7 +186,7 @@ function adminPanel() {
 
 }
 function homePageReAttempt() {
-    // we also need to clear the result table
+    
     var first = document.getElementById("quizHeader").firstChild
     first.remove()
     first = document.getElementById("quizBody").firstChild
@@ -195,14 +194,14 @@ function homePageReAttempt() {
         first.remove()
         first = document.getElementById("quizBody").firstChild
     }
-    clearInterval(interval)//the quiz time also needs to be reset
+    clearInterval(interval)
     document.getElementById("mainBody").style.display = "none"
     document.getElementById("startBtn").style.display = "block"
     document.getElementById("adminBtn").style.display = "block"
     document.getElementById("exitBtn").style.display = "block"
     document.getElementById("quizHeader").style.justifyContent = "space-between"
-    answers = []//clear the correct answers
-    qNum = 0//reset question number
+    answers = []
+    qNum = 0
     seconds = 0
     minutes = 0
 }
@@ -213,10 +212,10 @@ function homePage() {
     document.getElementById("mainPanel").style.display = "none"
     var questionsUl = document.getElementById("questionsUl")
     var first = questionsUl.firstElementChild
-    //this while loop will remove all questions from "questionsUl" when done button is pressed
-    while (first) {//while a child element is present inside questionsUl
-        first.remove()//remove that first child element
-        first = questionsUl.firstElementChild //update the "first" variable with the next first element
+    
+    while (first) {
+        first.remove()
+        first = questionsUl.firstElementChild 
     }
 }
 function appendAllQuestions() {
@@ -228,20 +227,20 @@ function appendAllQuestions() {
             optionVals[i] = questions[j].options[i]
         var answerVal = questions[j].answer
 
-        //here we'll be using the same code as we did in "addRec" function, with minor changes
+
 
 
         var divBody = "<li style='background-color: white; border-radius: 30px; padding: 10px 30px; margin-bottom: 10px'>"
         divBody += `<h3 class='quizHeader'>Q${j + 1}:&nbsp${questionVal}</h3>`
-        divBody += "<ul class='options_group' id='options_group'>"//ul for options
+        divBody += "<ul class='options_group' id='options_group'>"
         for (var i = 0; i < numOfOptions; i++) {
             if (optionVals[i] === answerVal)
-                divBody += `<li class='optionPanel active'>${optionVals[i]}</li>`//active class assigned to this option if it matches the answer
+                divBody += `<li class='optionPanel active'>${optionVals[i]}</li>`
             else
-                divBody += `<li class='optionPanel'>${optionVals[i]}</li>`//options which does'nt match the answer
+                divBody += `<li class='optionPanel'>${optionVals[i]}</li>`
         }
 
-        //now lets add edit and remove buttons
+
         divBody += "<li style='display:flex; justify-content: center;'>"
         divBody += '<button class="btn btn-success fa fa-pencil liBtn" onclick="editRec(this)"></button>'
         divBody += '<button class="btn btn-danger fa fa-trash liBtn" onclick="deleteRec(this)"></button></li>'
@@ -251,14 +250,14 @@ function appendAllQuestions() {
     }
 }
 function addQuestion() {
-    if (!addingRec) {//check if a record is'nt already being added
+    if (!addingRec) {
         addingRec = true
-        //Lets make a UI for adding question //
+     
         var htmlDesign = '<li class="panelLi" style="background-color: grey; border-radius: 30px; padding: 10px 30px">'
         htmlDesign += '<h3>Q:&nbsp</h3>'
         htmlDesign += '<input type="text" class="form-control w-75">'
         htmlDesign += '<ul style="width: 1000px">'
-        // this for loop willbe used to add input field for options
+
         for (var i = 0; i < 4; i++)
             htmlDesign += `<li style="display: flex;" class="panelLi"><h3>Option ${i + 1}:&nbsp</h3><input class="form-control w-50"></li>`
         htmlDesign += '<li style="display: flex;"><h3>Answer:&nbsp</h3><input class="form-control w-50"></li>'
@@ -279,32 +278,32 @@ function addRec(id) {
         optionVals[i] = id.parentNode.parentNode.childNodes[i].childNodes[1].value
     var answerVal = id.parentNode.previousSibling.childNodes[1].value
 
-    // check if any field is empty
+  
     if (!(questionVal === '') && !(answerVal === '')) {
         var enteredOptions = 0
-        // check of at least two options are entered
+      
         for (var i = 0; i < optionVals.length; i++) {
             if (!(optionVals[i] === '')) enteredOptions++
             if (enteredOptions == 2) break
         }
         if (enteredOptions !== 2) alert("Please enter atleast two options")
         else {
-            // check of the answer matches any of the options
+          
             enteredOptions = 0
             for (var i = 0; i < optionVals.length; i++) {
                 if (optionVals[i] === answerVal) {
-                    enteredOptions = 1//this flag indicates that the answer matches one of the answers
+                    enteredOptions = 1
                     break
                 }
             }
             if (!enteredOptions) alert("Please enter one of the options in answer filed")
             else {
-                addingRec = false //reset this flag so that new data can be added afterwards
-                if (editingRec) {//if we're editing a record
+                addingRec = false
+                if (editingRec) {
                     editingRec = false
-                    var qNumEditHtml = id.parentNode.parentNode.parentNode.firstChild.innerHTML//this will be used to get the full html of question number we are editing
-                    //now lets extract the question number from that innerHTML
-                    var qNumEdit = qNumEditHtml.substring(1, qNumEditHtml.indexOf(':')) //start from index 1 and end at ':' sign
+                    var qNumEditHtml = id.parentNode.parentNode.parentNode.firstChild.innerHTML
+ 
+                    var qNumEdit = qNumEditHtml.substring(1, qNumEditHtml.indexOf(':')) 
                     var currentEditQuestion = questions[qNumEdit - 1]
 
                     currentEditQuestion.question = questionVal
@@ -314,30 +313,30 @@ function addRec(id) {
 
                     var divBody = "<li style='background-color: grey; border-radius: 30px; padding: 10px 30px; margin-bottom: 10px'>"
                     divBody += `<h3 class='quizHeader'>Q${qNumEdit}:&nbsp${currentEditQuestion.question}</h3>`
-                    divBody += "<ul class='options_group' id='options_group'>"//ul for options
+                    divBody += "<ul class='options_group' id='options_group'>"
                     for (var i = 0; i < currentEditQuestion.options.length; i++) {
                         if (currentEditQuestion.options[i] === currentEditQuestion.answer)
-                            divBody += `<li class='optionPanel active'>${currentEditQuestion.options[i]}</li>`//active class assigned to this option if it matches the answer
+                            divBody += `<li class='optionPanel active'>${currentEditQuestion.options[i]}</li>`
                         else
-                            divBody += `<li class='optionPanel'>${currentEditQuestion.options[i]}</li>`//options which does'nt match the answer
+                            divBody += `<li class='optionPanel'>${currentEditQuestion.options[i]}</li>`
                     }
 
                 }
-                else {//if we're adding a new record
-                    questions[questions.length] = questions_temp//add template object inside new question index
+                else {
+                    questions[questions.length] = questions_temp
                     let currentQuestion = questions[questions.length - 1]
-                    currentQuestion.question = questionVal//insert question in the object
-                    currentQuestion.answer = answerVal//insert answer value in the object
+                    currentQuestion.question = questionVal
+                    currentQuestion.answer = answerVal
                     for (var i = 0; i < numOfOptions; i++)
-                        currentQuestion.options[i] = optionVals[i]//insert option values
+                        currentQuestion.options[i] = optionVals[i]
                     var divBody = "<li style='background-color: grey; border-radius: 30px; padding: 10px 30px; margin-bottom: 10px'>"
                     divBody += `<h3 class='quizHeader'>Q${questions.length}:&nbsp${currentQuestion.question}</h3>`
-                    divBody += "<ul class='options_group' id='options_group'>"//ul for options
+                    divBody += "<ul class='options_group' id='options_group'>"
                     for (var i = 0; i < currentQuestion.options.length; i++) {
                         if (currentQuestion.options[i] === currentQuestion.answer)
-                            divBody += `<li class='optionPanel active'>${currentQuestion.options[i]}</li>`//active class assigned to this option if it matches the answer
+                            divBody += `<li class='optionPanel active'>${currentQuestion.options[i]}</li>`
                         else
-                            divBody += `<li class='optionPanel'>${currentQuestion.options[i]}</li>`//options which does'nt match the answer
+                            divBody += `<li class='optionPanel'>${currentQuestion.options[i]}</li>`
                     }
                 }
                 //now lets add edit and remove buttons
@@ -347,7 +346,7 @@ function addRec(id) {
                 divBody += "</ul></li>"
                 var p = document.createElement('p')
                 p.innerHTML += divBody
-                document.getElementById("questionsUl").insertBefore(p.firstChild, id.parentNode.parentNode.parentNode.nextSibling)//insert question before the next sibbling of last questions
+                document.getElementById("questionsUl").insertBefore(p.firstChild, id.parentNode.parentNode.parentNode.nextSibling)
                 id.parentNode.parentNode.parentNode.remove()
             }
         }
@@ -357,33 +356,31 @@ function editRec(id) {
     if (!addingRec) {
         addingRec = true
         editingRec = true
-        let numOfOtions = id.parentNode.parentNode.childNodes.length - 1//check number of li's inside optionsUl and -1(as there one li for buttons)
+        let numOfOtions = id.parentNode.parentNode.childNodes.length - 1
         let optionVals = []
         let answerVal = ''
-        let questionValHtml = id.parentNode.parentNode.parentNode.childNodes[0].innerHTML//the full question including "Q: "
-        // lets first console.log the value
+        let questionValHtml = id.parentNode.parentNode.parentNode.childNodes[0].innerHTML
+
         let questionVal = questionValHtml.substring(questionValHtml.indexOf(';') + 1, questionValHtml.length)
         let editQNum = questionValHtml.substring(1, 2)
         for (var i = 0; i < numOfOtions; i++) {
             optionVals[i] = id.parentNode.parentNode.childNodes[i].innerHTML
-            if (id.parentNode.parentNode.childNodes[i].className.indexOf('active') !== -1)//if the class of option is 'active', that means that it's the correct answe
-                answerVal = optionVals[i]//assign this option value to the answer object
+            if (id.parentNode.parentNode.childNodes[i].className.indexOf('active') !== -1)
+                answerVal = optionVals[i]
         }
-        //we will store the whole li which has our quesion,answer and options to the 'rVal', so if we do'nt update the edited question, we may restore the recent value
+       
         rVal = id.parentNode.parentNode.parentNode.parentNode.childNodes[editQNum]
 
-        //now we have to put every object inside a input element, this will be almost same as we did in addQuestion()
 
         var htmlDesign = '<li class="panelLi" style="background-color: grey; border-radius: 30px; padding: 10px 30px">'
-        htmlDesign += `<h3>Q${editQNum}:&nbsp</h3>`//we have to enter the question number here
+        htmlDesign += `<h3>Q${editQNum}:&nbsp</h3>`
         htmlDesign += `<input type="text" value="${questionVal}" class="form-control w-75">`
         htmlDesign += '<ul style="width: 1000px">'
-        // this for loop willbe used to add input field for options
         for (var i = 0; i < 4; i++)
             htmlDesign += `<li style="display: flex;" class="panelLi"><h3>Option ${i + 1}:&nbsp</h3><input class="form-control w-50" value="${optionVals[i]}"></li>`
         htmlDesign += `<li style="display: flex;"><h3>Answer:&nbsp</h3><input class="form-control w-50" value="${answerVal}"></li>`
         htmlDesign += '<li style="display: flex; justify-content: center;">'
-        htmlDesign += '<button class="btn btn-success liBtnAdd fa fa-check" onclick="addRec(this)"></button>'// the same addRec() function will be used
+        htmlDesign += '<button class="btn btn-success liBtnAdd fa fa-check" onclick="addRec(this)"></button>'
         htmlDesign += '<button class="btn btn-danger liBtnCancel fa fa-times" onclick="cancelUpdateRec(this)"></button>'
         htmlDesign += '</li>'
         htmlDesign += '</ul>'
@@ -391,7 +388,7 @@ function editRec(id) {
 
         var p = document.createElement('p')
         p.innerHTML += htmlDesign
-        document.getElementById("questionsUl").insertBefore(p.firstChild, id.parentNode.parentNode.parentNode.nextSibling)//insert question before the next sibbling of last questions
+        document.getElementById("questionsUl").insertBefore(p.firstChild, id.parentNode.parentNode.parentNode.nextSibling)
         id.parentNode.parentNode.parentNode.remove()
     }
     else "A record adding is already in progress"
@@ -400,12 +397,11 @@ function deleteRec(id) {
     var deleteQNumHtml = id.parentNode.parentNode.parentNode.firstChild.innerHTML
     var deleteQNum = deleteQNumHtml.substring(1, deleteQNumHtml.indexOf(':'))
     var questionsUl = document.getElementById("questionsUl")
-    questions.splice(deleteQNum - 1, 1)//also delete the object of this question from the "questions" array
+    questions.splice(deleteQNum - 1, 1)
     var first = questionsUl.firstElementChild
-    //this while loop will remove all questions from "questionsUl" when done button is pressed
-    while (first) {//while a child element is present inside questionsUl
-        first.remove()//remove that first child element
-        first = questionsUl.firstElementChild //update the "first" variable with the next first element
+    while (first) {
+        first.remove()
+        first = questionsUl.firstElementChild
     }
     appendAllQuestions()
 }
@@ -417,13 +413,13 @@ function dellAll() {
         first.remove();
         first = questionsUl.firstElementChild
     }
-    questions.splice(0, questions.length)//clear all questions from "questions" array
+    questions.splice(0, questions.length)
 }
 function cancelUpdateRec(id) {
     addingRec = false
     editingRec = false
-    document.getElementById("questionsUl").insertBefore(rVal, id.parentNode.parentNode.parentNode.nextSibling)//add the rVal(as we have stored the previous value here) before the next question
-    id.parentNode.parentNode.parentNode.remove()// now remove the input fields
+    document.getElementById("questionsUl").insertBefore(rVal, id.parentNode.parentNode.parentNode.nextSibling)
+    id.parentNode.parentNode.parentNode.remove()
 }
 function discardRec(id) {
     addingRec = false

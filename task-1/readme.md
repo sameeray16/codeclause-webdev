@@ -1,5 +1,5 @@
-##notice board <a href="https://sameeray16.github.io/codeclause-webdev/task-1/" > check it out! </a>
+notice board <a href="https://sameeray16.github.io/codeclause-webdev/task-1/" > check it out! </a>
 
-#admin login : 
+admin login : 
   username : admin
   password : 123
